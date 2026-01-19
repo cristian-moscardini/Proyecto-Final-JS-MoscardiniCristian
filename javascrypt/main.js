@@ -1,60 +1,59 @@
 const NUMERO_MAXIMO = 10;
-
 let numeroSecreto = Math.floor(Math.random() * NUMERO_MAXIMO) + 1;
 
-let numeroElegido;
+let intentos = JSON.parse(localStorage.getItem("intentos")) || [];
 
-let intentos = 0;
+const inputNumero = document.getElementById("numeroUsuario");
+const btnAdivinar = document.getElementById("btnAdivinar");
+const btnReiniciar = document.getElementById("btnReiniciar");
+const mensaje = document.getElementById("mensaje");
+const listaIntentos = document.getElementById("listaIntentos");
 
-// Función de entrada del usuario
-function adivinarNumero() {
-    let entrada = prompt(`Adivina el número secreto (entre 1 y ' + ${NUMERO_MAXIMO}):`);
-    return parseInt(entrada);
-}
+// MOSTRAR LOS INTENTOS GUARDADOS EN LOCALSTORAGE
+const guardarIntentos = () => {
+    localStorage.setItem("intentos", JSON.stringify(intentos));
+};
 
-alert ("Comencemos a jugar!!");
-console.log("Adivina el número secreto para ganar el premio, entre 1 y", NUMERO_MAXIMO);
+// MOSTRAR INTENTOS EN LA PÁGINA
+const mostrarIntentos = () => {
+    listaIntentos.innerHTML = "";
+    intentos.map((intento, index) => {
+        const li = document.createElement("li");
+        li.textContent = `Intento ${index + 1}: ${intento}`;
+        listaIntentos.appendChild(li);
+    });
+};
 
+btnAdivinar.addEventListener("click", () => {
+    const numero = Number(inputNumero.value);
 
-
-//Función principal del juego
-while (true) {
-    numeroElegido = adivinarNumero();
-    intentos++;
-
-    if (isNaN(numeroElegido) || numeroElegido < 1 || numeroElegido > NUMERO_MAXIMO) {
-        alert("Por favor, ingresa un número válido entre 1 y " + NUMERO_MAXIMO + ".");
-        continue;}
-
-
-    if (numeroElegido === numeroSecreto) {
-        alert(`¡Felicidades! Has adivinado el número secreto ${numeroSecreto} en ${intentos} intentos.`);
-        console.log(`¡Felicidades! Has adivinado el número secreto ${numeroSecreto} en ${intentos} intentos.`);
-        break;
-    } else if (numeroElegido < numeroSecreto) {
-        alert("El número secreto es mayor. Intenta de nuevo.");
-        console.log("El número secreto es mayor. Intenta de nuevo.");
-    } else {
-        alert("El número secreto es menor. Intenta de nuevo.");
-        console.log("El número secreto es menor. Intenta de nuevo.");
-    }   
-}
-
-console.log("Mostramos los intentos del 1 al " + intentos);
-for (let i = 1; i <= intentos; i++) {
-    console.log("Intento número: " + i);
-}   
-
-//Reinicio del juego
-let jugarDeNuevo;
-do {
-    jugarDeNuevo = prompt("¿Quieres jugar de nuevo? (SI/NO):").toUpperCase();
-    if (jugarDeNuevo === "SI"){
-        location.reload();
-    } else if (jugarDeNuevo !== "NO"){
-        alert("Por favor, responde con 'SI' o 'NO'.");
+    if (numero < 1 || numero > NUMERO_MAXIMO) {
+        mensaje.textContent = "Número inválido";
+        return;
     }
-} while (jugarDeNuevo !== "SI" && jugarDeNuevo !== "NO");
 
-alert("Gracias por jugar. ¡Hasta la próxima!");
-console.log("Gracias por jugar. ¡Hasta la próxima!");
+    intentos.push(numero);
+    guardarIntentos();
+    mostrarIntentos();
+
+    if (numero === numeroSecreto) {
+        mensaje.textContent = `🎉 Ganaste en ${intentos.length} intentos`;
+    } else if (numero < numeroSecreto) {
+        mensaje.textContent = "El número es mayor";
+    } else {
+        mensaje.textContent = "El número es menor";
+    }
+
+    inputNumero.value = "";
+});
+
+btnReiniciar.addEventListener("click", () => {
+    localStorage.clear();
+    intentos = [];
+    numeroSecreto = Math.floor(Math.random() * NUMERO_MAXIMO) + 1;
+    mensaje.textContent = "Juego reiniciado";
+    mostrarIntentos();
+});
+
+// MOSTRAR INTENTOS AL CARGAR LA PÁGINA
+mostrarIntentos();

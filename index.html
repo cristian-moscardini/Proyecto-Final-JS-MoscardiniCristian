@@ -1,12 +1,25 @@
-<!DOCTYPE html> 
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto JS - CRISTIAN MOSCARDINI</title>
-    <link rel="stylesheet" href="">
+    <title>Juego Adivina el Número</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <main class="container">
+        <h1>Adivina el número secreto</h1>
+
+        <p id="mensaje">Ingresa un número entre 1 y 10</p>
+
+        <input type="number" id="numeroUsuario" min="1" max="10">
+        <button id="btnAdivinar">Adivinar</button>
+        <button id="btnReiniciar">Reiniciar</button>
+
+        <h3>Intentos</h3>
+        <ul id="listaIntentos"></ul>
+    </main>
+
     <script src="./javascrypt/main.js"></script>
 </body>
-</html>             
+</html>
