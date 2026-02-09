@@ -1,29 +1,150 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
+body {
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(circle, #1a0a2e 0%, #000000 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: background 0.8s ease;
+}
+
+
+/* CONTENEDOR PRINCIPAL */
 .container {
-    width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    padding: 30px;
+    background: rgba(20, 20, 30, 0.95);
+    border: 4px solid #764ba2;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(118, 75, 162, 0.6);
     text-align: center;
 }
 
-input {
-    padding: 5px;
-    width: 60px;
+
+/* IMAGEN Y MENSAJE*/
+.catContainer {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #111;
+    border: 2px solid #333;
+}
+
+#imgGatito {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.5s ease;
+}
+
+.titulo-arcade {
+    font-family: 'Press Start 2P', cursive;
+    color: #00ffcc;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    text-shadow: 3px 3px #ff00ff;
+}
+
+#mensaje {
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+
+
+/* INPUTS Y BOTONES */
+input[type="number"] {
+    background: #000;
+    color: #00ffcc;
+    padding: 12px;
+    width: 90px;
+    border: 2px solid #764ba2;
+    border-radius: 5px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+    outline: none;
+    margin-bottom: 15px;
+}
+
+input[type="number"]:focus {
+    box-shadow: 0 0 15px #00ffcc;
 }
 
 button {
-    padding: 6px 10px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.65rem;
+    padding: 12px 15px;
     margin: 5px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-ul {
+#btnAdivinar {
+    background-color: #ff00ff;
+    color: white;
+}
+
+#btnAdivinar:hover {
+    background-color: #cc00cc;
+    transform: scale(1.05);
+}
+
+#btnReiniciar {
+    background-color: #333;
+    color: #aaa;
+}
+
+#btnReiniciar:hover {
+    background-color: #444;
+}
+
+
+
+
+/* LISTA DE INTENTOS */
+h3 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+    margin-top: 30px;
+    color: #764ba2;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+}
+
+#listaIntentos {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
     list-style: none;
-    padding: 0;
+}
+
+#listaIntentos li {
+    background: #111;
+    border: 1px solid #764ba2;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    color: #00ffcc;
 }

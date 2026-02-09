@@ -2,24 +2,35 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Juego Adivina el Número</title>
+    <title>Gato-Número Arcade</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <main class="container">
-        <h1>Adivina el número secreto</h1>
+        <div class="catContainer">
+            <img id="imgGatito" src="" alt="Gatito del estado" style="display:none;">
+        </div>
+
+        <h1 class="titulo-arcade">Adivina el número secreto para obtener un gatito a color</h1>
 
         <p id="mensaje">Ingresa un número entre 1 y 10</p>
 
-        <input type="number" id="numeroUsuario" min="1" max="10">
-        <button id="btnAdivinar">Adivinar</button>
-        <button id="btnReiniciar">Reiniciar</button>
+        <div class="input-area">
+            <input type="number" id="numeroUsuario" min="1" max="10" placeholder="0">
+            <div class="buttons">
+                <button id="btnAdivinar">Adivinar</button>
+                <button id="btnReiniciar">Reiniciar</button>
+            </div>
+        </div>
 
-        <h3>Intentos</h3>
+        <h3>Cantidad de Intentos</h3>
         <ul id="listaIntentos"></ul>
     </main>
 
-    <script src="./javascrypt/main.js"></script>
+    <script src="./javascript/main.js"></script>
+
 </body>
 </html>
